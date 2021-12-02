@@ -33,19 +33,25 @@ class Config:
     test_optimal_R_measure = 0.0
 
     # SET THESE: TRAINING FOLDER LOCATIONS
-    dataset = "/media/ardaduz/T5/train"
-    train_run_directory = "/home/ardaduz/Workspace/git/deep-video-mvs/training-runs"
+    dataset = "/home/nhsmt1123/master-thesis/deep-video-mvs/data/7scenes"
+    train_run_directory = "/home/nhsmt1123/master-thesis/deep-video-mvs/training-runs"
+
+    fusionnet_train_weights = "20211129-133714"
+    fusionnet_test_weights = "weights"
 
     # SET THESE: TESTING FOLDER LOCATIONS
     # for run-testing-online.py (evaluate a single scene, WITHOUT keyframe indices, online selection)
-    test_online_scene_path = "/home/ardaduz/Workspace/git/deep-video-mvs/sample-data/hololens-dataset/000"
+    test_online_scene_path = "/home/nhsmt1123/master-thesis/deep-video-mvs/sample-data/hololens-dataset/000"
 
     # for run-testing.py (evaluate all available scenes, WITH pre-calculated keyframe indices)
-    test_offline_data_path = "/home/ardaduz/Workspace/git/deep-video-mvs/sample-data"
+    test_offline_data_path = "/home/nhsmt1123/master-thesis/deep-video-mvs/sample-data"
 
     # below give a dataset name like tumrgbd, i.e. folder or None
     # if None, all datasets will be evaluated given that
     # their keyframe index files are in Config.test_offline_data_path/indices folder
     test_dataset_name = "hololens-dataset"  # or None
 
-    test_result_folder = "/media/ardaduz/T5/results/"
+    test_result_folder = "/home/nhsmt1123/master-thesis/deep-video-mvs/results/"
+
+    pairnet_weights = "20211129-133714"
+    fusionnet_weights = "20211129-150111"

@@ -49,8 +49,8 @@ def process_scene(input_directory, output_folder):
 
 
 def main():
-    input_folder = Path("/home/ardaduz/HDD/deep-mvs-dataset/raw-data/7scenes-official")
-    output_folder = Path("/media/ardaduz/T5/test/7scenes")
+    input_folder = Path("/home/share/dataset/7scenes")
+    output_folder = Path("/home/nhsmt1123/master-thesis/deep-video-mvs/data/7scenes")
 
     input_directories = [
         input_folder / "redkitchen/seq-01",
@@ -65,7 +65,15 @@ def main():
         input_folder / "pumpkin/seq-03",
         input_folder / "pumpkin/seq-06",
         input_folder / "stairs/seq-02",
-        input_folder / "stairs/seq-06"]
+        input_folder / "stairs/seq-06", # train
+        input_folder / "redkitchen/seq-03",
+        input_folder / "chess/seq-03",
+        input_folder / "heads/seq-01",
+        input_folder / "fire/seq-03",
+        input_folder / "fire/seq-04",
+        input_folder / "office/seq-02",
+        input_folder / "pumpkin/seq-01",
+        input_folder / "stairs/seq-01"] # test
 
     pool = Pool(6)
     for finished_scene in pool.imap_unordered(partial(process_scene, output_folder=output_folder), input_directories):

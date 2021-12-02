@@ -49,7 +49,7 @@ def main():
     torch.manual_seed(Config.train_seed)
 
     # create the directory for this run of the training
-    run_directory = os.path.join(Config.train_run_directory, datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
+    run_directory = os.path.join(Config.train_run_directory, 'pairnet-' + datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
     os.mkdir(run_directory)
 
     # zip every code file

@@ -39,7 +39,7 @@ def predict(evaluate):
 
     for i in range(len(model)):
         try:
-            checkpoint = sorted(Path("weights").files())[i]
+            checkpoint = sorted(Path(Config.fusionnet_test_weights).files())[i]
             weights = torch.load(checkpoint)
             model[i].load_state_dict(weights)
             model[i].eval()

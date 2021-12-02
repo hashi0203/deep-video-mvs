@@ -47,7 +47,7 @@ def main():
     torch.manual_seed(Config.train_seed)
 
     # create the directory for this run of the training
-    run_directory = os.path.join(Config.train_run_directory, datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
+    run_directory = os.path.join(Config.train_run_directory, 'fusionnet-' + datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
     os.mkdir(run_directory)
 
     # zip every code file
@@ -102,15 +102,24 @@ def main():
     model = [feature_extractor, feature_shrinker, cost_volume_encoder, lstm_fusion, cost_volume_decoder]
 
     if TrainingHyperparameters.use_checkpoint:
-        checkpoints = sorted(Path("weights").files())
-        for i in range(len(model)):
+        checkpoints = sorted(Path(Config.fusionnet_train_weights).files())
+        for checkpoint in checkpoints:
+            idx = int(checkpoint.split("/")[-1][0])
             try:
-                weights = torch.load(checkpoints[i])
-                model[i].load_state_dict(weights)
-                print("Loaded weights for", checkpoints[i])
+                weights = torch.load(checkpoint)
+                model[idx].load_state_dict(weights)
+                print("Loaded weights for", checkpoint)
             except Exception as e:
                 print(e)
                 print("Skipping...")
+        # for i in range(len(model)):
+        #     try:
+        #         weights = torch.load(checkpoints[i])
+        #         model[i].load_state_dict(weights)
+        #         print("Loaded weights for", checkpoints[i])
+        #     except Exception as e:
+        #         print(e)
+        #         print("Skipping...")
 
     cudnn.benchmark = True
 

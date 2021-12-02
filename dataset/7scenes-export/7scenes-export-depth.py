@@ -4,16 +4,23 @@ import cv2
 import numpy as np
 from path import Path
 
-scenes = [("7scenes_chess", "01", "02"),
-          ("7scenes_fire", "01", "02"),
-          ("7scenes_heads", "02"),
-          ("7scenes_office", "01", "03"),
-          ("7scenes_pumpkin", "03", "06"),
-          ("7scenes_redkitchen", "01", "07"),
-          ("7scenes_stairs", "02", "06")]
+scenes = [("chess", "01", "02"),
+          ("fire", "01", "02"),
+          ("heads", "02"),
+          ("office", "01", "03"),
+          ("pumpkin", "03", "06"),
+          ("redkitchen", "01", "07"),
+          ("stairs", "02", "06"), # train
+          ("chess", "03"),
+          ("fire", "03", "04"),
+          ("heads", "01"),
+          ("office", "02"),
+          ("pumpkin", "01"),
+          ("redkitchen", "03"),
+          ("stairs", "01")] # test
 
-input_folder = Path("/home/ardaduz/HDD/deep-mvs-dataset/raw-data/7scenes-depth")
-output_folder = Path("/media/ardaduz/T5/test/7scenes")
+input_folder = Path("/home/share/dataset/7scenes")
+output_folder = Path("/home/nhsmt1123/master-thesis/deep-video-mvs/data/7scenes")
 for scene in scenes:
 
     if len(scene) == 3:
@@ -23,10 +30,10 @@ for scene in scenes:
         folder_name, seq1 = scene
         seqs = [seq1]
 
-    scene_input_folder = input_folder / folder_name / "train" / "depth"
+    scene_input_folder = input_folder / folder_name
 
     for seq in seqs:
-        files = sorted(scene_input_folder.files("seq" + seq + "*"))
+        files = sorted((scene_input_folder / "seq-" + seq).files("*depth.png"))
 
         room_name = folder_name.split("_")[-1]
         scene_name = room_name + "-seq-" + seq

@@ -1,3 +1,11 @@
+data
+*.out
+training-runs
+dvmvs/pairnet/*202*
+dvmvs/fusionnet/*202*
+dvmvs/fusionnet/keyframe_*
+reference.txt
+
 *.egg-info/
 .idea/
 
